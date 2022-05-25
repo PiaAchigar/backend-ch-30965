@@ -1,0 +1,11 @@
+{{!-- Es mi plantilla donde cargo todos los partials --}}
+ {{> header }} {{!--inyecto(con >) el partial "header" que esta dentro de la carpeta "partials"--}}
+<h3>Desafio 5 - {{comision}}</h3>
+<ul>
+  {{#each alumnos}}
+    <li>
+      {{this.nombre}} {{this.apellido}}
+    </li>
+  {{/each}}
+</ul>
+{{> footer }}{{!--inserto el partial "footer" --}}
