@@ -2,7 +2,7 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 const app = express();
 
-app.use("/static", express.static(`${__dirname}/public`));
+//app.use("/static", express.static(`${__dirname}/public`));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,14 +10,14 @@ app.use(express.urlencoded({ extended: true }));
 const engineFn = engine({
   // registro el engine de hbs
   extname: ".hbs",
-  defaultLayout: `${__dirname}/views/index.hbs`,
-  layoutsDir: `${__dirname}/views/layouts`,
-  partialsDir: `${__dirname}/views/partials`,
+  defaultLayout: `${__dirname}/views/hbs/index.hbs`,
+  layoutsDir: `${__dirname}/views/hbs/layouts`,
+  partialsDir: `${__dirname}/views/hbs/partials`,
 });
 
 app.engine("hbs", engineFn);
 
-app.set("views", "./views");
+app.set("views", "./views/hbs");
 app.set("view engine", "hbs");
 
 const productos = [];
