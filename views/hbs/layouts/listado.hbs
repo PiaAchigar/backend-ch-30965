@@ -1,0 +1,33 @@
+{{> header }}
+
+<div class="text-center">
+    <h3 class="mt-5">Listado de productos</h3>
+
+        {{# if productos  }}
+            <table class="table table-dark mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Foto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each productos}}
+                    <tr>
+                        <th scope="row">{{ this.id}}</th>
+                        <td>{{ this.nombre }}</td>
+                        <td>${{ this.precio }}</td>
+                        <td><img src="{{ this.foto }}" width="75"/></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        {{ else }}
+            <p class="p-5">No se encontraron datos</p>
+        {{/if}}
+
+</div>
+
+{{> footer }}
