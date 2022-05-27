@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Desafio 5 - Motores de Plantilla</title>
+</head>
+
+<body>
+    <main>
+        <div class="jumbotron">
+            <h2>Ingrese sus datos</h2>
+            <form method="POST" action="/producto">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="text" class="form-control" name="precio">
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto URL:</label>
+                    <input type="text" class="form-control" name="foto">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+
+        </div>
+    </main>
+    <span></span> <!-- para inyectar el resultado -->
+    <!-- incluir handlebars desde el CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script>
+        const template = Handlebars.compile(`
+    <h1>Datos Personales</h1>
+    <ul>
+        <li>{{nombre}}</li>
+        <li>{{apellido}}</li>
+        <li>{{edad}}</li>
+        <li>{{email}}</li>
+        <li>{{telefono}}</li>
+    </ul>
+    `); // compila la plantilla
+        const data = {
+            nombre: 'Iram',
+            apellido: 'Gutiérrez',
+            edad: 33,
+            email: 'iram@coderhouse.com',
+            telefono: '5512345678'
+        }
+        const html = template(data); // genera el html - templete + data
+        document.querySelector('span').innerHTML = html; // inyecta el resultado en la vista
+    </script>
+</body>
+
+</html>
