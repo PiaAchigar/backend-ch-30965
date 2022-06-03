@@ -2,7 +2,7 @@
 const express = require("express");
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
-const { stripVTControlCharacters } = require("util");
+const Container = require("./Container");
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -15,23 +15,54 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
-app.use(express.static("./public"));
 
 let users = [];
+const messages = [];
 
 //renderiza la vista "login"
 app.get("/", (req, res) => {
-  res.render("login");
+  return res.render("index");
 });
 
-app.post("/login", (req, res) => {
-  //guarda lo que viene del form login
-  //se encargaría de validar a los usuarios
-  const { username } = req.body;
-  users.push(username);
-  return res.redirect(`/logeado?username=${username}`); //redireccionamos y mando por queryparams el usuario con el q se registro a logeado.ejs
+app.get("/productos", async (req, res) => {
+  const productos = await contenedor.getAll();
+  const data = {
+    productos,
+  };
+
+  return res.render("prod", data);
 });
 
-app.get("/logeado", (req, res) => {
-    return res.redirect(`/logeado?username=${username}`); //mando por queryparams el usuario con el q se registro
+app.post("/productos", async (req, res) => {
+  const producto = {
+    title: req.body.title,
+    price: req.body.price,
+    thumbnail: req.body.thumbnail,
+  };
+
+  const id = await contenedor.save(producto);
+  console.log("ID asignado: ", id);
+  return res.redirect("/");
+});
+
+const PORT = 8080;
+
+httpServer.listen(PORT, () =>
+  console.log(`Servidor corriendo en el puerto: ${PORT}`)
+);
+
+httpServer.on("error", (error) => console.log(`Hubo un error: ${error}`));
+
+io.on("connection", async (socket) => {
+  console.log("Nuevo usuario conectado: ", socket.id);
+
+  const productos = await contenedor.getAll();
+
+  socket.emit("productos", productos);
+
+  socket.on("newProduct", async (producto) => {
+    await contenedor.save(producto);
+    const productos = await contenedor.getAll();
+    io.sockets.emit("productos", productos);
   });
+});
