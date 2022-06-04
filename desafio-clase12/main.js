@@ -27,17 +27,17 @@ app.get("/productos", async (req, res) => {
   return res.render("listado", data);
 });
 
-app.post("/productos", async (req, res) => {
-  const producto = {
-    title: req.body.title,
-    price: req.body.price,
-    thumbnail: req.body.thumbnail,
-  };
+// app.post("/productos", async (req, res) => {
+//   const producto = {
+//     title: req.body.title,
+//     price: req.body.price,
+//     thumbnail: req.body.thumbnail,
+//   };
 
-  const id = await contenedor.save(producto);
-  console.log("ID asignado: ", id);
-  return res.redirect("/");
-});
+//   const id = await contenedor.save(producto);
+//   console.log("ID asignado: ", id);
+//   return res.redirect("/");
+// });
 
 const PORT = 8080;
 
@@ -62,10 +62,13 @@ io.on("connection", async (socket) => {
 
   socket.emit("productos", productos);
 
-  socket.on("recarga", (producto) => {
-    // await contenedor.save(producto);
-    // const productos = await contenedor.getAll();
-    //necesito el ultimo con su id
-    io.sockets.emit("ultimoProducto", producto);
+  socket.on("newProd", async (producto) => {
+    console.log(producto);
+    const id = await contenedor.save(producto);
+    console.log({ id });
+    const productos = await contenedor.getAll();
+    io.sockets.emit("productos", productos);
   });
+
+  //   chat--------------
 });

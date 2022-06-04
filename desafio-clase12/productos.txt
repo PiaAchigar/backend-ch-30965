@@ -1,1 +1,1 @@
-[{"title":"Lapiz","price":"150","thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-256.png","id":1},{"title":"","price":"","thumbnail":"","id":2},{"title":"sdsd","price":"sdsd","thumbnail":"sdsd","id":3}]
+[{"title":"Lapiz","price":"150","thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-256.png","id":1}]

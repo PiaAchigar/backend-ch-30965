@@ -1,72 +1,35 @@
-console.log("arrancamos denuevo");
-const tBody = document.getElementById("renderProductos");
 const socket = io();
-//socket.emit("joinChat", { username });
+
+const tBody = document.getElementById("renderProductos");
+const sendForm = document.getElementById("send");
 
 socket.on("productos", (data) => {
-  data.forEach((prod) => {
-    tBody.innerHTML += `<tr>
-                                <th scope="row">
-                                    ${prod.id}
-                                </th>
-                                <td>
-                                    ${prod.title}
-                                </td>
-                                <td>
-                                    ${prod.price}
-                                </td>
+  const productos = data
+    .map((prod) => {
+      const productTemplate = `<tr>
+                                <th scope="row">${prod.id}</th>
+                                <td>${prod.title}</td>
+                                <td>${prod.price}</td>
                                 <td>
                                     <img src="${prod.thumbnail}" width="75" />
                                 </td>
                             </tr>`;
-  });
+      return productTemplate;
+    })
+    .join("");
+  tBody.innerHTML = productos;
 });
 
-// productos.forEach(p=> {
-//     <tr>
-//         <th scope="row">
-//             <%= p.id %>
-//         </th>
-//         <td>
-//             <%= p.title %>
-//         </td>
-//         <td>
-//             <%= p.price %>
-//         </td>
-//         <td>
-//             <img src="<%=p.thumbnail%>" width="75" />
-//         </td>
-//     </tr>
-//      })
-const sendForm = document.getElementById("sendForm");
-sendForm.addEventListener("submit", (e) => {
-  console.log("va a recargar");
+sendForm.addEventListener("click", (e) => {
   e.preventDefault();
-  const title = document.getElementById("title");
-  const price = document.getElementById("price");
-  const thumbnail = document.getElementById("thumbnail");
-  const product = {
-    title: title.value,
-    price: price.value,
-    thumbnail: thumbnail.value,
-  };
-  //console.log(product);
-  socket.emit("recarga", product);
+  const title = document.getElementById("title").value;
+  const price = document.getElementById("price").value;
+  const thumbnail = document.getElementById("thumbnail").value;
+  console.log(title + price);
+  socket.emit("newProd", { title, price, thumbnail });
+  title.value = "";
+  price.value = "";
+  thumbnail.value = "";
 });
 
-socket.on("ultimoProducto", (prod)=>{
-    tBody.innerHTML += `<tr>
-                                <th scope="row">
-                                    ${1}
-                                </th>
-                                <td>
-                                    ${prod.title}
-                                </td>
-                                <td>
-                                    ${prod.price}
-                                </td>
-                                <td>
-                                    <img src="${prod.thumbnail}" width="75" />
-                                </td>
-                            </tr>`;
-})
+// chat --------------------------
