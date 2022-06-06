@@ -51,59 +51,16 @@
                 </table>
             </div>
             <!-- chat en vivo -->
-            <div class="container">
-                <div class="row clearfix">
-                    <div class="col-lg-12">
-                        <div class="card chat-app">
-                            <div id="plist" class="people-list">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                </div>
-                                <ul class="list-unstyled chat-list mt-2 mb-0" id="usersContainer">
+            <div class="p-5 m-auto">
+                <h3 class="mt-5">Centro de Mensajes</h3>
+                <input type="text" class="form-control mt-3 mb-3" id="inputEmail" placeholder="Ingrese su email">
 
-                                </ul>
-                            </div>
-                            <div class="chat">
-                                <div class="chat-header clearfix">
-                                    <div class="row">
-                                        <div class="col-lg-6" id="userNameConected">
-
-                                        </div>
-                                        <div class="col-lg-6 hidden-sm text-right">
-                                            <a href="javascript:void(0);" class="btn btn-outline-secondary"><i
-                                                    class="fa fa-camera"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-primary"><i
-                                                    class="fa fa-image"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-info"><i
-                                                    class="fa fa-cogs"></i></a>
-                                            <a href="javascript:void(0);" class="btn btn-outline-warning"><i
-                                                    class="fa fa-question"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chat-history">
-                                    <ul class="m-b-0" id="messagesContainer">
-                                    </ul>
-                                </div>
-
-                                <div class="chat-message clearfix">
-                                    <span style="color:gray ; font-size: 13px;" id="serverNotif"></span>
-                                    <div class="input-group mb-0">
-                                        <input id="messageInput" type="text" class="form-control"
-                                            placeholder="Enter text here...">
-                                        <div class="input-group-prepend">
-                                            <button class="input-group-text" id="sendMessage"><i
-                                                    class="fa fa-send"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="mensajes">
                 </div>
+
+                <textarea rows="6" name="message" class="form-control" id="inputMessage"
+                    placeholder="Ingrese su mensaje" required="required"></textarea>
+                <button class="btn btn-primary mt-3" id="sendMessage">Enviar</button>
             </div>
 
     </div>

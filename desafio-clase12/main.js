@@ -38,7 +38,7 @@ app.get("/productos", async (req, res) => {
 //   console.log("ID asignado: ", id);
 //   return res.redirect("/");
 // });
-
+let messages = [];
 const PORT = 8080;
 
 // const server = app.listen(PORT, () =>
@@ -70,5 +70,15 @@ io.on("connection", async (socket) => {
     io.sockets.emit("productos", productos);
   });
 
-  //   chat--------------
+  // Chat--------------
+
+  //envio el array de mjes
+  socket.emit("messages", messages);
+
+  //recibo cada nuevo mje
+  socket.on("newMessage", (data) => {
+    messages.push(data);
+    console.log(messages);
+    io.sockets.emit("messages", messages);
+  });
 });
