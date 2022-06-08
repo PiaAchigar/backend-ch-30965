@@ -1,8 +1,7 @@
 const express = require("express");
 const { Router } = express;
 const Contenedor = require("../Container");
-const cont = new Contenedor("products.txt");
-
+const cont = new Contenedor("products.json");
 
 const productosRouter = Router();
 
@@ -33,7 +32,6 @@ productosRouter.post("/api/productos", async (req, res) => {
   } catch (e) {
     console.log("Error de IIFE-save", e);
   }
-
 });
 
 productosRouter.put("/api/productos/:id", async (req, res) => {
