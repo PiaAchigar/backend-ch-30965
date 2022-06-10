@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+</head>
+
+<body>
+    <div class="d-flex, flex-column, align-items-center">
+        <h3 class="mt-5">Ingreso de un producto al carrito</h3>
+        <form class="w-50, mt-5, text-left" method="POST" action="/api/carrito/:idCart" id="form">
+            <div class="mb-3">
+                <label for="title" class="form-label">Id del producto</label>
+                <input type="text" class="form-control" id="idProd" name="IdProd">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </form>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

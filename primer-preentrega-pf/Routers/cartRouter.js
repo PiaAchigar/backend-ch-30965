@@ -1,35 +1,47 @@
 const express = require("express");
 const { Router } = express;
 const Contenedor = require("../CartPersist");
-const contCart = new Contenedor("cart.txt","products.txt");
+const contCart = new Contenedor("cart.txt", "products.txt");
 
 const cartRouter = Router();
 
 //id, timestamp(carrito), productos: [{ id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }]
 cartRouter.get("/api/carrito", async (req, res) => {
   try {
-    const arrayData = await contCart.getAll();
+    const arrayData = await contCart.getAllCarts();
     res.json(arrayData);
   } catch (e) {
     console.log("Error en getAll: ", e);
   }
 });
 
-
 cartRouter.get("/api/carrito/:id", async (req, res) => {
   try {
-    const obj = await contCart.getById(req.params.id);
-    obj ? res.json(obj) : res.json({ error: "Carrito no encontrado" });
+    const obj = await contCart.getByIdCart(req.params.id);
+    console.log({ obj });
+    obj
+      ? res.json(obj) // o res.json(obj.productos)
+      : res.json({ error: "Carrito no encontrado" });
   } catch (e) {
     console.log("Error en getById: ", e);
   }
 });
 
-//crea un carrito y devuelve si id
+//pusheo un producto al carrito x - viene el idcart y el objProducto
 cartRouter.post("/api/carrito", async (req, res) => {
   try {
-    const newId = await contCart.newCart();
-    return res.status(201).json(newId);
+    const cart = await contCart.getByIdCart(req.body.id); //tengo mi carrito
+    console.log({ cart });
+    const producto = await contCart.getByIdProduct(req.body.idProd); //tengo el id del producto seleccionado
+    const isThere = cart.productos.some((p) => {
+      //consulto si ya esta en el carrito
+      p.id == req.body.id;
+    });
+    isThere
+      ? (producto.unidades = producto.unidades + 1) //si ya esta le sumo uno
+      : cart.productos.push(producto); //sino esta lo pusheo
+
+    return res.status(201).json(cart);
   } catch (e) {
     console.log("Error de IIFE-save", e);
   }

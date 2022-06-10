@@ -16,7 +16,14 @@ server.on("error", (error) => console.log(` Se produjo un error ${error}`));
 app.use("/", express.static(__dirname + "/public"));
 
 //tengo que crear la fn middleware que discrimina entre admin y usus
-
+// const middlewareAdmin = (res, rej, next) => {
+//   if (admin) {
+//     res.send({});
+//     next();
+//   } else {
+//     rej.send();
+//   }
+// };
 
 // me traigo la ruta
 app.use("/", productsRouter);
