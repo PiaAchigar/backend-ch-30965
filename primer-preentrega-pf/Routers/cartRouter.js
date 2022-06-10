@@ -1,11 +1,11 @@
 const express = require("express");
 const { Router } = express;
 const Contenedor = require("../CartPersist");
-const contCart = new Contenedor("cart.txt");
+const contCart = new Contenedor("cart.txt","products.txt");
 
 const cartRouter = Router();
 
-//id, timestamp(carrito), productos: { id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }
+//id, timestamp(carrito), productos: [{ id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }]
 cartRouter.get("/api/carrito", async (req, res) => {
   try {
     const arrayData = await contCart.getAll();
@@ -24,9 +24,6 @@ cartRouter.get("/api/carrito/:id", async (req, res) => {
     console.log("Error en getById: ", e);
   }
 });
-
-//middleware para el admin para
-//app.use()
 
 //crea un carrito y devuelve si id
 cartRouter.post("/api/carrito", async (req, res) => {

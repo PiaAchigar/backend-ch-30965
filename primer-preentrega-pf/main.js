@@ -15,6 +15,9 @@ server.on("error", (error) => console.log(` Se produjo un error ${error}`));
 //dispongo publicamente la carpeta publicamente, no hace falta especificarle el index.html, lo va a buscar por defecto
 app.use("/", express.static(__dirname + "/public"));
 
+//tengo que crear la fn middleware que discrimina entre admin y usus
+
+
 // me traigo la ruta
 app.use("/", productsRouter);
 app.use("/", cartRouter);

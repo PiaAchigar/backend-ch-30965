@@ -1,13 +1,14 @@
 const express = require("express");
 const { Router } = express;
-const Contenedor = require("../Container");
-const cont = new Contenedor("products.txt");
+//const Contenedor = require("../Container");
+const Contenedor = require("../CartPersist");
+const cont = new Contenedor("cart.txt","products.txt");
 
 const productosRouter = Router();
 
 productosRouter.get("/api/productos", async (req, res) => {
   try {
-    const arrayData = await cont.getAll();
+    const arrayData = await cont.getAllProducts();
     res.json(arrayData);
   } catch (e) {
     console.log("Error en getAll: ", e);

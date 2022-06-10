@@ -1,12 +1,25 @@
 const fs = require("fs");
 
 class CartPersist {
-  constructor(archivoName) {
-    this.archivoName = archivoName;
+  constructor(archivoNameCart, archivoNameProduct) {
+    this.archivoNameCart = archivoNameCart;
+    this.archivoNameProduct = archivoNameProduct;
+    this.arrayProductos = [];
   }
-  async getAll() {
+  async getAllProducts() {
     try {
-      const data = await fs.promises.readFile(this.archivoName, "utf-8");
+      const data = await fs.promises.readFile(this.archivoNameProduct, "utf-8");
+      const arrayData = JSON.parse(data);
+      return arrayData;
+    } catch (e) {
+      const arrayData = [];
+      console.error("Error de lectura-liena 28- se lo manda vacio al array", e);
+      return arrayData;
+    }
+  }
+  async getAllCarts() {
+    try {
+      const data = await fs.promises.readFile(this.archivoNameCart, "utf-8");
       const arrayData = JSON.parse(data);
       return arrayData;
     } catch (e) {
@@ -37,29 +50,29 @@ class CartPersist {
       console.error("Error de lectura", err);
     }
   }
-  // async save(obj) {
-  //   try {
-  //     const arrayData = await this.getAll();
-  //     let now = new Date().now;
-  //     let idCart = 0;
-  //     arrayData.length == 0
-  //       ? (idCart = 1)
-  //       : (idCart = arrayData[arrayData.length - 1].id + 1);
+  async save(obj) {
+    try {
+      const arrayData = await this.getAll();
+      let now = new Date().now;
+      let idCart = 0;
+      arrayData.length == 0
+        ? (idCart = 1)
+        : (idCart = arrayData[arrayData.length - 1].id + 1);
 
-  //     let cart = {
-  //       id: idCart,
-  //       timestamp: now,
-  //       products: products.push(obj),
-  //     };
+      let cart = {
+        id: idCart,
+        timestamp: now,
+        products: products.push(obj),
+      };
 
-  //     arrayData.push(cart);
-  //     fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
+      arrayData.push(cart);
+      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
 
-  //     return idCart;
-  //   } catch (e) {
-  //     console.error("Error de lectura", e);
-  //   }
-  // }
+      return idCart;
+    } catch (e) {
+      console.error("Error de lectura", e);
+    }
+  }
   async getByIdCart(num) {
     try {
       const arrayData = await this.getAll();
@@ -93,7 +106,7 @@ class CartPersist {
   }
   async deleteAllCart() {
     try {
-      await fs.promises.writeFile( this.archivoName, '[]' )
+      await fs.promises.writeFile(this.archivoName, "[]");
       // const arrayData = [];
       // fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
     } catch (e) {
