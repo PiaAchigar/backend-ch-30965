@@ -1,12 +1,12 @@
 const express = require("express");
 const { Router } = express;
-const Contenedor = require("../Container");
-const contCart = new Contenedor("cart.json");
+const Contenedor = require("../CartPersist");
+const contCart = new Contenedor("cart.txt");
 
 const cartRouter = Router();
 
 //id, timestamp(carrito), productos: { id, timestamp(producto), nombre, descripcion, código, foto (url), precio, stock }
-cartRouter.get("/api/productos", async (req, res) => {
+cartRouter.get("/api/carrito", async (req, res) => {
   try {
     const arrayData = await contCart.getAll();
     res.json(arrayData);
@@ -16,7 +16,7 @@ cartRouter.get("/api/productos", async (req, res) => {
 });
 
 
-cartRouter.get("/api/productos/:id", async (req, res) => {
+cartRouter.get("/api/carrito/:id", async (req, res) => {
   try {
     const obj = await contCart.getById(req.params.id);
     obj ? res.json(obj) : res.json({ error: "Carrito no encontrado" });
@@ -25,11 +25,13 @@ cartRouter.get("/api/productos/:id", async (req, res) => {
   }
 });
 
+//middleware para el admin para
+//app.use()
+
 //crea un carrito y devuelve si id
-cartRouter.post("/api/productos", async (req, res) => {
+cartRouter.post("/api/carrito", async (req, res) => {
   try {
-    const producto = req.body;
-    const newId = await contCart.save(producto);
+    const newId = await contCart.newCart();
     return res.status(201).json(newId);
   } catch (e) {
     console.log("Error de IIFE-save", e);
@@ -59,9 +61,9 @@ cartRouter.put("/api/productos/:id", async (req, res) => {
   }
 });
 
-cartRouter.delete("/api/productos/:id", async (req, res) => {
+cartRouter.delete("/api/carrito/:id", async (req, res) => {
   try {
-    const producto = await contCart.deleteById(req.params.id);
+    const producto = await contCart.deleteByIdCart(req.params.id);
     console.log({ producto });
     producto
       ? res.send({ Productos: productosDelete })

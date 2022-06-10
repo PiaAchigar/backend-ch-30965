@@ -1,7 +1,7 @@
 const express = require("express");
 const { Router } = express;
 const Contenedor = require("../Container");
-const cont = new Contenedor("products.json");
+const cont = new Contenedor("products.txt");
 
 const productosRouter = Router();
 
