@@ -40,7 +40,7 @@ productosRouter.put("/api/productos/:id", async (req, res) => {
     //id, timestamp, nombre, descripcion, código, foto (url), precio, stock.
     let obj = await cont.getByIdProduct(req.params.id);
     if (obj) {
-      await cont.deleteByIdProduct(req.params.id);// ojo que lo elimino, sino cargatodo, se carga vacio
+      await cont.deleteByIdProduct(req.params.id); // ojo que lo elimino, sino cargatodo, se carga vacio
       //let now = new Date().now; se lo agrego cuando lo guardo
       obj.nombre = req.body.nombre;
       obj.descripcion = req.body.descripcion;
@@ -54,6 +54,7 @@ productosRouter.put("/api/productos/:id", async (req, res) => {
       res.send({ error: "Producto no encontrado" });
     }
   } catch (e) {
+    console.log("prueba");
     console.log("Error de IIFE", e);
   }
 });
