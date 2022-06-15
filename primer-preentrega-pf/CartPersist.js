@@ -17,42 +17,6 @@ class CartPersist {
       return arrayData;
     }
   }
-  async getAllCarts() {
-    try {
-      const data = await fs.promises.readFile(this.archivoNameCart, "utf-8");
-      const arrayData = JSON.parse(data);
-      return arrayData;
-    } catch (e) {
-      const arrayData = [];
-      console.error(
-        "Error de lectura-liena 28- se lo manda vacio al array de Cart",
-        e
-      );
-      return arrayData;
-    }
-  }
-  async newCart() {
-    // creo un nuevo carrito
-    try {
-      const arrayData = await this.getAll();
-      console.log("como viene el array?" + arrayData);
-      let now = new Date().now;
-      let idCart = 0;
-      arrayData.length === 0
-        ? (idCart = 1)
-        : (idCart = arrayData[arrayData.length - 1].id + 1);
-      let cart = {
-        id: idCart,
-        timestamp: now,
-        productos: [], // acá voy pusheando los productos que agrega el cliente
-      };
-      arrayData.push(cart);
-      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
-      return idCart;
-    } catch (err) {
-      console.error("Error de lectura", err);
-    }
-  }
   async saveProduct(obj) {
     try {
       const arrayData = await this.getAllProducts();
@@ -104,12 +68,50 @@ class CartPersist {
       const index = arrayData.findIndex((e) => e.id == num);
       arrayData.splice(index, 1);
       fs.promises.writeFile(this.archivoNameProduct, JSON.stringify(arrayData));
+      return "Producto Eliminado";
     } catch (e) {
-      console.error("Dio error-fn deleteById", e);
+      console.error("Dio error-fn deleteByIdProducto", e);
     }
   }
   //------------------------------ Cart------------------------
-  async getByIdCart(num) { //me devuelve el obj carrito
+  async getAllCarts() {
+    try {
+      const data = await fs.promises.readFile(this.archivoNameCart, "utf-8");
+      const arrayData = JSON.parse(data);
+      return arrayData;
+    } catch (e) {
+      const arrayData = [];
+      console.error(
+        "Error de lectura-liena 28- se lo manda vacio al array de Cart",
+        e
+      );
+      return arrayData;
+    }
+  }
+  async newCart() {
+    // creo un nuevo carrito
+    try {
+      const arrayData = await this.getAll();
+      console.log("como viene el array?" + arrayData);
+      let now = new Date().now;
+      let idCart = 0;
+      arrayData.length === 0
+        ? (idCart = 1)
+        : (idCart = arrayData[arrayData.length - 1].id + 1);
+      let cart = {
+        id: idCart,
+        timestamp: now,
+        productos: [], // acá voy pusheando los productos que agrega el cliente
+      };
+      arrayData.push(cart);
+      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
+      return idCart;
+    } catch (err) {
+      console.error("Error de lectura", err);
+    }
+  }
+  async getByIdCart(num) {
+    //me devuelve el obj carrito
     try {
       const arrayData = await this.getAllCarts();
       const cart = arrayData.find((c) => c.id == num);
@@ -124,11 +126,11 @@ class CartPersist {
 
   async deleteAProductInCart(idCart, idProd) {
     try {
-      const arrayData = await this.getAllProducts();
+      const arrayData = await this.getAllCarts();
       const indexCart = arrayData.findIndex((e) => e.id == idCart);
       const indexProd = arrayData[indexCart].findIndex((e) => e.id == idProd);
       arrayData[indexCart].splice(indexProd, 1);
-      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
+      fs.promises.writeFile(this.archivoNameCart, JSON.stringify(arrayData));
     } catch (e) {
       console.error("Dio error-fn deleteById", e);
     }
@@ -150,6 +152,30 @@ class CartPersist {
       // fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
     } catch (e) {
       console.log("Error al limpiar el archivo", e);
+    }
+  }
+  //Agrega un producto a un carrito en particular
+  async addAProdToCart(idCart, idProduct) {
+    try {
+      const arrayCarts = await this.getAllCarts();
+      const cartIndex = arrayCarts.findIndex(
+        (cart) => cart.id === Number(idCart)
+      );
+      // console.log(cartIndex);
+      if (!arrayCarts[cartIndex]) {
+        return "no se econtró carrito";
+      }
+      const myProd = await this.getByIdProduct(idProduct);
+      console.log(myProd);
+
+      arrayCarts[cartIndex].productos.push(myProd);
+      await fs.promises.writeFile(
+        this.archivoNameCart,
+        JSON.stringify(arrayCarts, null, 2)
+      );
+      return `Se agregó al carrito de index ${arrayCarts[cartIndex]} el producto ${myProd}`;
+    } catch (e) {
+      console.log("Error en el método addaProdToCart", e);
     }
   }
 }

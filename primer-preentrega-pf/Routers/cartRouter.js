@@ -27,7 +27,17 @@ cartRouter.get("/api/carrito/:id", async (req, res) => {
   }
 });
 
-//pusheo un producto al carrito x - viene el idcart y el objProducto
+//Creo el carrito y devuelvo el id
+cartRouter.post("/api/carrito", async (req, res) => {
+  try {
+    const cartId = await contCart.newCart();
+    return res.status(201).json(cartId);
+  } catch (e) {
+    console.log("Error de IIFE-save", e);
+  }
+});
+
+//pusheo un producto al carrito x - viene el idcart y el objProducto por el body
 cartRouter.post("/api/carrito", async (req, res) => {
   try {
     const cart = await contCart.getByIdCart(req.body.id); //tengo mi carrito
@@ -81,4 +91,30 @@ cartRouter.delete("/api/carrito/:id", async (req, res) => {
     console.log("Error de IIFE-delete", e);
   }
 });
+//Delete 1 producto de 1 carrito especifico
+cartRouter.delete("/:id/productos/:id_prod", async (req, res) => {
+  try {
+    contCart.deleteAProductInCart(id, req.params.id_prod);
+  } catch (e) {
+    console.log("Error de IIFE-delete", e);
+  }
+});
+
+//Agrego un producto a un carrito en particular, id del carrito por params, y el id del producto por body
+cartRouter.post("/api/carrito/:id/productos", async (req, res) => {
+  try {
+    const idCart = req.params.id;
+    const idProd = req.body.idProd;
+
+    contCart.agregarProdACarrito(idCart, idProd);
+
+    return res.status(201).json(`producto agregando en carrito ${idCart}`);
+  } catch (e) {
+    console.log(
+      "Error en POST del del guardado de un producto en un carrito",
+      e
+    );
+  }
+});
+
 module.exports = cartRouter;

@@ -54,14 +54,13 @@ productosRouter.put("/api/productos/:id", async (req, res) => {
       res.send({ error: "Producto no encontrado" });
     }
   } catch (e) {
-    console.log("prueba");
     console.log("Error de IIFE", e);
   }
 });
 
 productosRouter.delete("/api/productos/:id", async (req, res) => {
   try {
-    const producto = await cont.deleteById(req.params.id);
+    const producto = await cont.deleteByIdProducto(req.params.id);
     console.log({ producto });
     producto
       ? res.send({ Productos: productosDelete })
