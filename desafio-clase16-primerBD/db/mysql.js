@@ -1,3 +1,4 @@
+//conexión
 const options = {
   client: "mysql",
   connection: {
@@ -6,6 +7,7 @@ const options = {
     password: "",
     database: "clase16",
   },
+  pool: { min: 0, max: 8 },
 };
 module.exports = {
   options,

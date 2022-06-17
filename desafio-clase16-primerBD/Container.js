@@ -1,125 +1,67 @@
-const fs = require("fs");
+//Knex
+const { options } = require("./db/mysql");
+const knex = require("knex")(options);
 
+//Tabla : id, title, price, thumbnail
+//Para poder usar ésta clase la tabla ya tiene q estar previamente creada... la creo acá adentro o antes de instanciar ésta clase??
 class Contenedor {
-  constructor(archivoName) {
-    this.archivoName = archivoName;
+  constructor(objKnex, tableName) {
+    this.objKnex = objKnex;
+    this.tableName = tableName;
   }
   async getAll() {
-    try {
-      const data = await fs.promises.readFile(this.archivoName, "utf-8");
-      const arrayData = JSON.parse(data);
-      return arrayData;
-    } catch (e) {
-      const arrayData = [];
-      console.error("Error de lectura-liena 28", e);
-      return arrayData;
-    }
+    this.objKnex
+      .from(tableName)
+      .select("*")
+      .then((products) => {
+        console.log({ products });
+        return products;
+      })
+      .catch((err) => console.log(`Error: ${err.message}`))
+      .finally(() => this.objKnex.destroy());
   }
 
-  async save(obj) {
-    try {
-      const arrayData = await this.getAll();
-      let now = new Date().now;
-      arrayData.length == 0
-        ? (obj.id = 1)
-        : (obj.id = arrayData[arrayData.length - 1].id + 1);
-      obj.timestamp = now;
-      arrayData.push(obj);
-      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
-
-      return obj.id;
-    } catch (e) {
-      console.error("Error de lectura", e);
-    }
+  async save(objProduct) {
+    this.objKnex
+      .insert(objProduct)
+      .then(() => {
+        //acá tengo q retornar el id que no se como hacerlo
+        console.log("Producto insertado");
+      })
+      .catch((err) => console.log(`Error: ${err.message}`))
+      .finally(() => this.objKnex.destroy());
   }
-  async getById(num) {
-    try {
-      const arrayData = await this.getAll();
-      const objObtenido = arrayData.find((e) => e.id == num) || "null";
-      return objObtenido;
-    } catch (e) {
-      console.error("Dio error-fn getById", e);
-    }
+  async getById(idProd) {
+    this.objKnex.from(this.tableName),
+      select("*")
+        .where("id", "=", idProd) // es lo mismo que poner where({id:idProd}) ??
+        .then((products) => {
+          //Aca tengo q hacer el return products, no?
+          console.log({ products });
+        })
+        .catch((err) => console.log(`Error: ${err.message}`))
+        .finally(() => this.objKnex.destroy());
   }
-  async deleteById(num) {
-    try {
-      const arrayData = await this.getAll();
-      const index = arrayData.findIndex((e) => e.id == num);
-      arrayData.splice(index, 1);
-      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
-    } catch (e) {
-      console.error("Dio error-fn deleteById", e);
-    }
+  async deleteById(idProd) {
+    this.objKnex
+      .from(tableName)
+      .where("id", idProd)
+      .del()
+      .then((products) => {
+        console.log(`Productos eliminados: ${products}`);
+      })
+      .catch((err) => console.log(`Error: ${err.message}`))
+      .finally(() => this.objKnex.destroy());
   }
   async deleteAll() {
-    try {
-      const arrayData = [];
-      fs.promises.writeFile(this.archivoName, JSON.stringify(arrayData));
-    } catch (e) {
-      console.log("Error al limpiar el archivo", e);
-    }
+    objKnex
+      .from(tableName)
+      .del()
+      .then((products) => {
+        console.log(`Productos eliminados: ${products}`);
+      })
+      .catch((err) => console.log(`Error: ${err.message}`))
+      .finally(() => this.objKnex.destroy());
   }
 }
-
 module.exports = Contenedor;
-// let archivo = new Contenedor();
-// const objSemi = {
-//   title: "Semicirculo",
-//   price: 100,
-//   thumbnail:
-//     "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-// };
-// const objCircle = {
-//   title: "Calculadora",
-//   price: 234.56,
-//   thumbnail:
-//     "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
-//   id: 2,
-// };
-// const objGlobo = {
-//   title: "Globo Terráqueo",
-//   price: 345.67,
-//   thumbnail:
-//     "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
-//   id: 3,
-// };
-
-// console.log("--------------Save--------------");
-// (async () => {
-//   try {
-//     console.log(await archivo.save(objSemi));
-//     //console.log(archivo.save(objCircle));
-//     //console.log(archivo.save(objGlobo));
-//   } catch (e) {
-//     console.log("Error de IIFE-save", e);
-//   }
-// })();
-
-// console.log("-------------GetById-------------");
-// (async () => {
-//   //como llamo a una funcion asinc , tengo que usar una IIFE
-//   try {
-//     let obj = await archivo.getById(2);
-//     console.log({ obj });
-//     //console.log(await archivo.getById(2));
-//   } catch (e) {
-//     console.log("Error de IIFE", e);
-//   }
-// })();
-// console.log("-------------deleteById-------------");
-// (async () => {
-//   try {
-//     await archivo.deleteById(2);
-//   } catch (e) {
-//     console.log("Error de IIFE-delete", e);
-//   }
-// })();
-
-//console.log("-------------deleteAll-------------");
-// (async () => {
-//   try {
-//     await archivo.deleteAll();
-//   } catch (e) {
-//     console.log("Error de IIFE-delete", e);
-//   }
-// })();
