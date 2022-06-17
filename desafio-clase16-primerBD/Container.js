@@ -4,6 +4,7 @@ const knex = require("knex")(options);
 
 //Tabla : id, title, price, thumbnail
 //Para poder usar ésta clase la tabla ya tiene q estar previamente creada... la creo acá adentro o antes de instanciar ésta clase??
+//Como pruebo ésto?
 class Contenedor {
   constructor(objKnex, tableName) {
     this.objKnex = objKnex;
