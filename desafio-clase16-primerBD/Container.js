@@ -1,6 +1,7 @@
 //Knex
-const { options } = require("./db/mysql");
-const knex = require("knex")(options);
+//La conexión la hago en el script donde voy a usar despues la clase
+//const { options } = require("./db/mysql");
+//const knex = require("knex")(options);
 
 //Tabla : id, title, price, thumbnail
 //Para poder usar ésta clase la tabla ya tiene q estar previamente creada... la creo acá adentro o antes de instanciar ésta clase??
