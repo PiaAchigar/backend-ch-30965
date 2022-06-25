@@ -1,0 +1,6 @@
+class Contenedor{
+    constructor(name){
+
+    }
+    
+}

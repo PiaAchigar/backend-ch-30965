@@ -1,0 +1,103 @@
+//defino mi router y sus rutas productRouter.get("/9){devolver todos los productos
+//productsRouter.post{crear un nuevo producto}}
+//delegar la logica de la creacion de nuestros productosRouter a
+//acá requiero mi contenedor de archicos generico
+//todo:
+//ruta de crear producto
+//ruta de leer producto
+//exporto el modulo lo requiero en el server.js
+const express = require("express");
+const { Router } = express;
+//const Contenedor = require("../Container");
+const ContenedorArchivo = require("../contenedores/ContenedorArchivo");
+const contenedorArchivoProductos = new ContenedorArchivo("./products.json");
+
+const productsRouter = Router();
+
+productsRouter.get("", (req, res) => {
+  return contenedorArchivoProductos.findAll().then((products) => {
+    console.log({ products });
+    res.json(products);
+  });
+  //   try {
+  //     const arrayData = await cont.getAllProducts();
+  //     res.json(arrayData);
+  //   } catch (e) {
+  //     console.log("Error en getAll: ", e);
+  //   }
+});
+
+//get segun su id
+productsRouter.get("/api/products/:id", async (req, res) => {
+  try {
+    const obj = await cont.getByIdProduct(req.params.id);
+    obj ? res.json(obj) : res.json({ error: "Producto no encontrado" });
+  } catch (e) {
+    console.log("Error en getById: ", e);
+  }
+});
+
+productsRouter.post("", (req, res) => {
+  const data = req.body;
+  return contenedorArchivoProductos.create(data).then((newProd) => {
+    console.log(newProd);
+    return res.status(201).json(newProd);
+  });
+
+  //   try {
+  //     const producto = req.body;
+  //     const newId = await cont.saveProduct(producto);
+  //     return res.status(201).json(newId);
+  //   } catch (e) {
+  //     console.log("Error de IIFE-save", e);
+  //   }
+});
+
+productsRouter.put("/api/products/:id", async (req, res) => {
+  try {
+    //id, timestamp, nombre, descripcion, código, foto (url), precio, stock.
+    let obj = await cont.getByIdProduct(req.params.id);
+    if (obj) {
+      await cont.deleteByIdProduct(req.params.id); // ojo que lo elimino, sino cargatodo, se carga vacio
+      //let now = new Date().now; se lo agrego cuando lo guardo
+      obj.nombre = req.body.nombre;
+      obj.descripcion = req.body.descripcion;
+      obj.codigo = req.body.codigo;
+      obj.foto = req.body.foto;
+      obj.precio = req.body.precio;
+      obj.stock = req.body.stock;
+      await cont.saveProduct(obj);
+      res.json(obj);
+    } else {
+      res.send({ error: "Producto no encontrado" });
+    }
+  } catch (e) {
+    console.log("Error de IIFE", e);
+  }
+});
+
+productsRouter.delete("/api/products/:id", async (req, res) => {
+  try {
+    const producto = await cont.deleteByIdProducto(req.params.id);
+    console.log({ producto });
+    producto
+      ? res.send({ Productos: productosDelete })
+      : res.send({ error: "Producto no encontrado" });
+  } catch (e) {
+    console.log("Error de IIFE-delete", e);
+  }
+});
+module.exports = productsRouter;
+
+//ejemplo de POST de un producto
+//timestamp, nombre, descripcion, código, foto (url), precio, stock.
+// let archivo = new Contenedor();
+// const objPerfu = {
+//   timestamp: "",
+//   nombre: "Good Girl",
+//   descripcion: "Perfume de mujer",
+//   codigo: 77894578,
+//   foto: "",
+//   precio: 10000,
+//   stock: 5,
+// };
