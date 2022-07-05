@@ -33,83 +33,38 @@ const productsStorage = storage().products; //voy a usar la propiedad producto d
 //const contenedorMySQLProducts = new ContenedorMySQL(options, "products");
 
 const productsRouter = Router();
+const isAdmin = require("../../middlewares/isAdminMiddleware");
 
-productsRouter.get("", (req, res) => {
-  // return productosDAO.findAll().then((products) => {
-  return productsStorage.findAll().then((products) => {
-    console.log({ products });
-    res.json(products);
-  });
-  //   try {
-  //     const arrayData = await cont.getAllProducts();
-  //     res.json(arrayData);
-  //   } catch (e) {
-  //     console.log("Error en getAll: ", e);
-  //   }
+//get segun si trae o no id
+productsRouter.get("/:id?", async (req, res) => {
+  if (req.params.id) {
+    return productsStorage
+      .find(req.params.id)
+      .then((products) => res.json(products));
+  }
+  return res.json(await productsStorage.findAll());
 });
 
-//get segun su id
-productsRouter.get("/api/products/:id", async (req, res) => {
-  //hacer
-  // try {
-  //   const obj = await cont.getByIdProduct(req.params.id);
-  //   obj ? res.json(obj) : res.json({ error: "Producto no encontrado" });
-  // } catch (e) {
-  //   console.log("Error en getById: ", e);
-  // }
-});
-
-productsRouter.post("", (req, res) => {
+productsRouter.post("/", isAdmin, async (req, res) => {
   const data = req.body;
   return productsStorage.create(data).then((newProd) => {
     console.log(newProd);
     return res.status(201).json(newProd);
   });
-
-  //   try {
-  //     const producto = req.body;
-  //     const newId = await cont.saveProduct(producto);
-  //     return res.status(201).json(newId);
-  //   } catch (e) {
-  //     console.log("Error de IIFE-save", e);
-  //   }
 });
 
-productsRouter.put("/api/products/:id", async (req, res) => {
-  //hacer
-  // try {
-  //   //id, timestamp, nombre, descripcion, código, foto (url), precio, stock.
-  //   let obj = await cont.getByIdProduct(req.params.id);
-  //   if (obj) {
-  //     await cont.deleteByIdProduct(req.params.id); // ojo que lo elimino, sino cargatodo, se carga vacio
-  //     //let now = new Date().now; se lo agrego cuando lo guardo
-  //     obj.nombre = req.body.nombre;
-  //     obj.descripcion = req.body.descripcion;
-  //     obj.codigo = req.body.codigo;
-  //     obj.foto = req.body.foto;
-  //     obj.precio = req.body.precio;
-  //     obj.stock = req.body.stock;
-  //     await cont.saveProduct(obj);
-  //     res.json(obj);
-  //   } else {
-  //     res.send({ error: "Producto no encontrado" });
-  //   }
-  // } catch (e) {
-  //   console.log("Error de IIFE", e);
-  // }
+productsRouter.put("/:id", isAdmin, async (req, res) => {
+  return productsStorage
+    .update(req.params.id, req.body)
+    .then((_) => res.sendStatus(204))
+    .catch((e) => console.log(e));
 });
 
-productsRouter.delete("/api/products/:id", async (req, res) => {
-  //hacer
-  // try {
-  //   const producto = await cont.deleteByIdProducto(req.params.id);
-  //   console.log({ producto });
-  //   producto
-  //     ? res.send({ Productos: productosDelete })
-  //     : res.send({ error: "Producto no encontrado" });
-  // } catch (e) {
-  //   console.log("Error de IIFE-delete", e);
-  // }
+productsRouter.delete("/:id", isAdmin, async (req, res) => {
+  return productsStorage
+    .delete(req.params.id)
+    .then((_) => res.sendStatus(204))
+    .catch((e) => console.log(e));
 });
 module.exports = productsRouter;
 

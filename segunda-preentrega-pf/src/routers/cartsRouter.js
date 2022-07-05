@@ -4,7 +4,6 @@ const storage = require("../daos"); //no hace falta que especifique index.js por
 const carritosStorage = storage().carrito; //voy a usar la propiedad producto del obj que storage me devuelve
 //es lo mismo que poner :   const { carrito : carritoStorage } = require("../daos")()
 
-
 //const ContenedorArchivo = require("../contenedores/ContenedorArchivo");
 //const CarritoDAOArchivo = require("../contenedores/CarritoDaoArchivo");//lo cambiamos por carritoStorage
 //const contenedorArchivoCarritos = new ContenedorArchivo();
@@ -12,26 +11,14 @@ const carritosStorage = storage().carrito; //voy a usar la propiedad producto de
 
 const cartsRouter = Router();
 
-cartsRouter.get("", (req, res) => {
-  //return contenedorArchivoCarritos.findAll().then((carts) => {
-  //return carritosDAO.findAll().then((carts) => {
-  return carritosStorage.findAll().then((carts) => {
-    console.log({ carts });
-    res.json(carts);
+//get segun id del cart, todos los productos
+cartsRouter.get("/:id/products", async (req, res) => {
+  return carritosStorage.getCartProducts(req.params.id).then((products) => {
+    res.json(products);
   });
 });
 
-//get segun su id
-cartsRouter.get("/api/products/:id", async (req, res) => {
-  // try {
-  //   const obj = await cont.getByIdProduct(req.params.id);
-  //   obj ? res.json(obj) : res.json({ error: "Producto no encontrado" });
-  // } catch (e) {
-  //   console.log("Error en getById: ", e);
-  // }
-});
-
-cartsRouter.post("", (req, res) => {
+cartsRouter.post("/", async (req, res) => {
   const data = req.body;
   return carritosStorage.create(data).then((newCart) => {
     console.log(newCart);
@@ -39,38 +26,19 @@ cartsRouter.post("", (req, res) => {
   });
 });
 
-cartsRouter.put("/api/products/:id", async (req, res) => {
-  // try {
-  //   //id, timestamp, nombre, descripcion, código, foto (url), precio, stock.
-  //   let obj = await cont.getByIdProduct(req.params.id);
-  //   if (obj) {
-  //     await cont.deleteByIdProduct(req.params.id); // ojo que lo elimino, sino cargatodo, se carga vacio
-  //     //let now = new Date().now; se lo agrego cuando lo guardo
-  //     obj.nombre = req.body.nombre;
-  //     obj.descripcion = req.body.descripcion;
-  //     obj.codigo = req.body.codigo;
-  //     obj.foto = req.body.foto;
-  //     obj.precio = req.body.precio;
-  //     obj.stock = req.body.stock;
-  //     await cont.saveProduct(obj);
-  //     res.json(obj);
-  //   } else {
-  //     res.send({ error: "Producto no encontrado" });
-  //   }
-  // } catch (e) {
-  //   console.log("Error de IIFE", e);
-  // }
+cartsRouter.put("/:id/productos", async (req, res) => {
+  return carritosStorage
+    .addCartProduct(req.params.id, req.body)
+    .then((_) => res.sendStatus(204));
 });
 
-cartsRouter.delete("/api/products/:id", async (req, res) => {
-  // try {
-  //   const producto = await cont.deleteByIdProducto(req.params.id);
-  //   console.log({ producto });
-  //   producto
-  //     ? res.send({ Productos: productosDelete })
-  //     : res.send({ error: "Producto no encontrado" });
-  // } catch (e) {
-  //   console.log("Error de IIFE-delete", e);
-  // }
+cartsRouter.delete("/:id", async (req, res) => {
+  return carritosStorage.delete(req.params.id).then((_) => res.sendStatus(204));
+});
+
+cartsRouter.delete("/:id/productos/:id_prod", async (req, res) => {
+  return carritosStorage
+    .deleteCartProduct(req.params.id, req.params.id_prod)
+    .then((_) => res.sendStatus(204));
 });
 module.exports = cartsRouter;

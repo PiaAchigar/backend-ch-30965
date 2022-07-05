@@ -1,26 +1,54 @@
 //contenedor genérico
+const parseDoc = require("../../firebase/parseDoc");
 class ContenedorFirebase {
-  constructor(name) {
-    //name se refiere al nombre del archivo
-    this.name = name;
+  constructor(query) {
+    this.query = query;
   }
-  findAll() {
-    //la promesa devuelve un JSON String
-    return fs.promises
-      .readFile(this.name, "utf-8")
-      .then((itemString) => JSON.parse(itemString)); //ahora si nos devuelve un arreglo
-  }
-  find(id) {}
 
-  create(data) {
-    //recibo un obj - lo tengo q pasar a String antes de guardarlo
-    return this.findAll().then((items) => {
-      items.push(data);
-      const dataString = JSON.stringify(items, null, 2); // null y 2, hace que respete el formato del JSON
-      return fs.promises.writeFile(this.name, dataString);
-    });
-  }
-  update(id, data) {}
-  delete(id) {}
+  findAll = async () => {
+    let doc;
+    try {
+      const response = await this.query.get();
+      const docs = response.docs;
+      doc = docs.map(parseDoc);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+    return doc;
+  };
+
+  find = async (id) => {
+    let item;
+    try {
+      const response = await this.query.doc(id).get();
+      item = parseDoc(response);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+    return item;
+  };
+
+  create = async (item) => {
+    try {
+      const user = await this.query.add(item);
+      console.log(user);
+    } catch (e) {
+      console.log(`Error: ${e.message}`);
+    }
+  };
+  update = async (id, newItem) => {
+    try {
+      await this.query.doc(id).update(newItem);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  };
+  delete = async (id) => {
+    try {
+      await this.query.doc(id).delete();
+    } catch (e) {
+      console.log(`Error: ${e.message}`);
+    }
+  };
 }
 module.exports = ContenedorFirebase;

@@ -12,4 +12,4 @@ const connection = mongoose
 
 module.exports = connection;
 
-//clase 20 - min 1:03  - Firebase
+

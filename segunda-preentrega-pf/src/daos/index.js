@@ -13,7 +13,7 @@ const ProductosDaoFirebase = require("./productos/ProductosDaoFirebase");
 const CarritoDaoFirebase = require("./carritos/CarritoDaoFirebase");
 
 const getStorage = () => {
-  const storage = process.env.storage || "mongodb";
+  const storage = process.env.storage || "archivo";
   switch (storage) {
     case "archivo":
       return {
