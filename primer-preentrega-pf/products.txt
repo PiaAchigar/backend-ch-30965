@@ -1,0 +1,1 @@
+[{"id":1,"timestamp":1654875966808,"nombre":"otravez","descripcion":"NADA","codigo":123456,"foto":"..","precio":200,"stock":5},{"nombre":"jeje","descripcion":"hola","codigo":123456,"foto":"..","precio":200,"stock":5,"id":2,"timestamp":1654875988627}]

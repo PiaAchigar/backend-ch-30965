@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Ejs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="container">
+        <%- include('./partials/header') %>
+            <!-- Formulario carga de productos -->
+            <div class="d-flex, flex-column, align-items-center">
+                <h3 class="mt-5">Ingreso de productos</h3>
+                <form class="w-50, mt-5, text-left">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Titulo</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="text" class="form-control" id="price" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="thumbnail" , class="form-label">URL</label>
+                        <input type="text" class="form-control" id="thumbnail" name="thumbnail">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="send">Cargar</button>
+                </form>
+            </div>
+            <!-- listado en tiempo real de los productos -->
+            <div class="text-center w-100 m-auto">
+                <h3 class="mt-5">Listado de productos</h3>
+                <table class="table table-dark mt-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Imagen</th>
+                        </tr>
+                    </thead>
+                    <tbody id="renderProductos">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- chat en vivo -->
+            <div class="p-5 m-auto">
+                <h3 class="mt-5">Centro de Mensajes</h3>
+                <input type="text" class="form-control mt-3 mb-3" id="inputEmail" placeholder="Ingrese su email">
+
+                <div id="mensajes">
+                </div>
+
+                <textarea rows="6" name="message" class="form-control" id="inputMessage"
+                    placeholder="Ingrese su mensaje" required="required"></textarea>
+                <button class="btn btn-primary mt-3" id="sendMessage">Enviar</button>
+            </div>
+
+    </div>
+    <%- include('./partials/footer') %>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/cliente.js"></script>
+
+</body>
+
+</html>
