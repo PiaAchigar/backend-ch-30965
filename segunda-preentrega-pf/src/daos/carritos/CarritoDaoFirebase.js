@@ -14,7 +14,7 @@ class CarritoDaoFirebase extends ContenedorFirebase {
     try {
       const cart = await this.getItemById(id);
       const newProdsCart = cart.products.filter((prod) => prod.id !== prodId);
-      await this.updateItem(cart.id, { products: newProdsCart });
+      await this.update(cart.id, { products: newProdsCart });
     } catch (err) {
       console.log(err);
     }
@@ -23,7 +23,7 @@ class CarritoDaoFirebase extends ContenedorFirebase {
   getCartProducts = async (id) => {
     let cart;
     try {
-      cart = await this.getItemById(id);
+      cart = await this.find(id);
     } catch (err) {
       console.log(err);
     }
@@ -32,11 +32,11 @@ class CarritoDaoFirebase extends ContenedorFirebase {
 
   addCartProduct = async (id, prod) => {
     try {
-      let cart = await this.getItemById(id);
+      let cart = await this.find(id);
       console.log(cart);
       cart.products ??= [];
       cart.products.push(prod);
-      await this.updateItem(cart.id, cart);
+      await this.update(cart.id, cart);
     } catch (err) {
       console.log(err);
     }
