@@ -1,0 +1,141 @@
+//Desafio clase 18 - MongoDB 
+Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga dos colecciones: mensajes y productos
+
+use ecommerce 
+
+const messages = [
+    {
+        email: "pia@gmail.com",
+        dat: new Date(),
+        msg: "Hi"
+    },
+    {
+        email: "pepa@gmail.com",
+        dat: new Date(),
+        msg: "Hello"
+    },
+    {
+        email: "ramiro@gmail.com",
+        dat: new Date(),
+        msg: "Welcome"
+    },
+    {
+        email: "ramon@gmail.com",
+        dat: new Date(),
+        msg: "How's it going?"
+    },
+    {
+        email: "jere@gmail.com",
+        dat: new Date(),
+        msg: "Not bad"
+    },
+    {
+        email: "santi@gmail.com",
+        dat: new Date(),
+        msg: "Fine"
+    },
+    {
+        email: "luciana@gmail.com",
+        dat: new Date(),
+        msg: "Thanks"
+    },
+    {
+        email: "lu@gmail.com",
+        dat: new Date(),
+        msg: "Gotcha"
+    },
+    {
+        email: "rodriguez@gmail.com",
+        dat: new Date(),
+        msg: "See you"
+    },
+    {
+        email: "dora@gmail.com",
+        dat: new Date(),
+        msg: "Good night!"
+    }
+]
+
+ecommerce> db.mensages.insertMany(messages)
+
+const products = [
+    {
+        name: "Rubor",
+        price: 1200,
+    },
+    {
+        name: "Lipstick",
+        price: 980,
+    },
+    {
+        name: "Blush",
+        price: 1900,
+    },
+    {
+        name: "Hair dryer",
+        price: 1000,
+    },
+    {
+        name: "Nail Polish",
+        price: 1200,
+    },
+    {
+        name: "Hair straightening",
+        price: 3300,
+    },
+    {
+        name: "Concealer",
+        price: 2860,
+    },
+    {
+        name: "Perfume",
+        price: 4999,
+    },
+    {
+        name: "Eye shadow",
+        price: 4320,
+    },
+    {
+        name: "CC cream",
+        price: 3990,
+    }
+]
+
+ecommerce> db.productos.insertMany(products)
+
+//3 - Listar todos los documentos en cada colección.
+ecommerce> db.mensages.find()
+ecommerce> db.productos.find()
+
+//4-Mostrar cantidad de documentos almacenados en cada una
+ecommerce> db.mensages.countDocuments()
+ecommerce> db.productos.countDocuments()
+
+//5 - CRUD - https://www.mongodb.com/docs/manual/crud/
+
+//Agregar un nuevo producto
+ecommerce> const newProduct = { name: 'BB cream', price: 300 }
+ecommerce> db.productos.insertOne(newProduct)
+
+//Listar nombre de productos por precio < 1000, entre 1000 y 3000, y > a 3000
+ecommerce> db.products.find({price: { $lt: 1000 }}, { name: true, _id: false } )
+ecommerce> db.products.find({ price: { $gte: 1000, $lte: 3000 }}, { name: true, _id: false })
+ecommerce> db.products.find({ price: { $gt: 3000 }}, { name: true, _id: false })
+
+//Consulta que trae el tercer producto mas barato
+ecommerce> db.products.find({}, { name: true, price: false, _id: false }).limit(1).sort({price: 1}).skip(2)
+
+//Agregar el campo stock con valor 100 a todos los productos
+ecommerce> db.products.updateMany({}, { $set: {stock: 100} })
+
+//Setear en 0 el stock de productos con precio > a 4000
+ecommerce> db.products.updateMany({ price: { $gt: 4000 } }, { $set: { stock: 0} })
+
+//Borrar productos con precio < 1000
+ecommerce> db.products.deleteMany({price: { $lt: 1000} })
+
+//Creacion de usuario 'pepe', pwd 'asd456' como solo lectura
+ecommerce> use admin
+admin> db.createUser({user:"pepe", pwd:"asd456", roles:[{role:"read",db: "ecommerce"}]})
+{ ok: 1 }
+admin>
