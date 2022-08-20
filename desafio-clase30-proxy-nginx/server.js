@@ -10,8 +10,10 @@ const initializePassport = require("./config/passport");
 const { isAuthenticated, isNotAuthenticated } = require("./middlewares/auth");
 const numCPUs = require("os").cpus().length;
 const dotenv = require("dotenv");
+const compression = require("compression");
 
 const Storage = require("./storage/Storage");
+const logger = require("./utils/logger");
 const connectDB = require("./config/db");
 
 const createRandomProducts = require("./utils/createRandomProducts");
@@ -48,7 +50,12 @@ const server = (args) => {
   app.use(passport.session());
   app.use(flash());
   app.use(express.static("./public"));
+  app.use(compression());
   app.use("/api", randomRouter);
+  app.use((req, res, next) => {
+    logger.info(`Ruta: ${req.path} Metodo: ${req.method}`);
+    return next();
+  });
 
   const PORT = args.port || 8080;
 
@@ -81,6 +88,7 @@ const server = (args) => {
       maxRSS: process.resourceUsage().maxRSS + " bytes",
       numCPUs,
     };
+
     return res.render("partials/info", { data: data });
   });
 
@@ -134,6 +142,10 @@ const server = (args) => {
       }
       return res.render("partials/logout", { email });
     });
+  });
+  app.get("*", (req, res) => {
+    logger.warn(`Ruta: ${req.path} Metodo: ${req.method}`);
+    return res.status(404).json({ message: "page not found" });
   });
 
   io.on("connection", (socket) => {
