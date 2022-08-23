@@ -26,6 +26,7 @@ function run (url) {
 
   //una vez que nuestra instancia de autocannon nos dice que ya terminó, xq es orientada a eventos
   inst.on('done', () => {
+    //process.stdout.write => implementación nativa del console.log
     process.stdout.write(Buffer.concat(buf))
     //enconces finalmente, convertimos el buffer a un string "Buffer.concat(buf)" y lo logueamos en la terminal con "process.stdout.write"
     //en "Buffer.concat(buf)" tenemos toda la salida de autocannon
