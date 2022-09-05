@@ -16,7 +16,6 @@ const { engine } = require("express-handlebars");
 const initializePassport = require("./config/passport");
 const connectDB = require("./db/mongodb");
 const dotenv = require("dotenv");
-const error404Middleware = require("./middlewares/error404Middleware");
 
 dotenv.config();
 const PORT = process.env.PORT || 8080;
@@ -28,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "123456789",
+    secret: "1234",
     resave: true,
     saveUninitialized: true,
     rolling: true,
@@ -62,7 +61,7 @@ app.use("/api/carrito", cartRouter);
 app.use("/auth", authRouter);
 app.use("/", appRouter);
 
-app.use(error404Middleware);
+
 
 const server = app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);

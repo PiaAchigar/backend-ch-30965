@@ -38,9 +38,7 @@ cartRouter.post("/:id", async (req, res) => {
   const cart = await carts.getItemById(req.params.id);
   const formattedProducts = cart.products.map(
     (product) =>
-      `Producto: ${product.name} <br />
-        Precio: ${product.price}
-        `
+      `Producto: ${product.name} ---> Precio: ${product.price}`
   );
   await sendMail(
     null,
@@ -49,9 +47,9 @@ cartRouter.post("/:id", async (req, res) => {
   );
   const newUser = await users.deleteCart(cart._id);
   console.log(newUser);
-  await sendSMS("La orden fue confirmada");
+  await sendSMS("Orden confirmada");
   await sendWhatsapp(
-    "Se ha creado una nueva orden de compra de parte de: " + req.user.name
+    "Creacion de nueva orden de compra de parte de: " + req.user.name
   );
   return res.redirect("/home");
 });

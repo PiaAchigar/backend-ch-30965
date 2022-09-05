@@ -1,8 +1,8 @@
 const twilio = require("twilio");
 
-const ACCOUNT_SID = "ACe87fed0ac4660dd435107afba7ea4ee6";
-const AUTH_TOKEN = "c2c7e6d6265de9cd96730445c5ec446b";
-const PHONE_NUMBER = "+15735334331";
+const ACCOUNT_SID = "ACb81319c28fcecad693735793d292c679";
+const AUTH_TOKEN = "29eccccd57e20002612841171a4ab3cc";
+const PHONE_NUMBER = "+12184132907";
 
 const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
 
@@ -11,7 +11,7 @@ const sendSMS = async (body) => {
     const message = await client.messages.create({
       body,
       from: PHONE_NUMBER,
-      to: "+542236921422",
+      to: "+541130317884",
     });
   } catch (e) {
     console.log(e);

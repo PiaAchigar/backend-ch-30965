@@ -1,12 +1,12 @@
 {
-  "name": "proyecto-pia",
+  "name": "proyecto-farmacia-final",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "test": "node main.js",
     "start": "node main.js",
-    "devStart":"nodemon main.js --ignore messages.json"
+    "devStart": "nodemon main.js --ignore messages.json"
   },
   "keywords": [],
   "author": "",
@@ -23,12 +23,17 @@
     "express-flash": "^0.0.2",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
+    "firebase-admin": "^11.0.1",
     "log4js": "^6.6.1",
     "mongoose": "^6.5.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.7.8",
     "normalizr": "^3.6.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "socket.io": "^4.5.1",
+    "twilio": "^3.81.0",
+    "winston": "^3.8.1",
     "yargs": "^17.5.1"
   }
 }

@@ -1,9 +1,10 @@
-import admin from "firebase-admin";
-
-const serviceAccount = JSON.parse(
-  //leo el archivo(./key.json) y lo guardo en ésta variable
-  await readFile(new URL("./key.json", import.meta.url))
-);
+//import admin from "firebase-admin";
+const admin = require("firebase-admin");
+const serviceAccount = require("./key.json");
+// const serviceAccount = JSON.parse(
+//   //leo el archivo(./key.json) y lo guardo en ésta variable
+//   await readFile(new URL("./key.json", import.meta.url))
+// );
 //console.log(serviceAccount);
 admin.initializeApp({
   //inicializamos la conexión a mi bd

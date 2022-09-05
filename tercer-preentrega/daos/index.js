@@ -9,7 +9,8 @@ const cartDaoFirebase = require("./carts/CartDaoFirebase");
 const userDaoMongoDB = require("./users/UserDaoMongoDB");
 
 const getStorage = () => {
-  const storage = process.env.STORAGE ?? "mongodb";
+  //const storage = process.env.STORAGE ?? "mongodb";
+  const storage = "mongodb";
   switch (storage) {
     case "archivo":
       return {

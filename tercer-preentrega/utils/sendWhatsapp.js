@@ -12,6 +12,7 @@ const sendWhatsapp = async (body) => {
       body,
       from: PHONE_NUMBER,
       to: "whatsapp:+542236921422",
+      //mediaUrl: ['foto.png']
     });
   } catch (e) {
     console.log(e);
