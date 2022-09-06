@@ -1,12 +1,12 @@
 const logger = require("../../config/winston");
 const FirebaseContainer = require("../../containers/FirebaseContainer");
-const db = require("../../firebase/db");
+//const db = require("../../firebase/db");
 
-const query = db.collection("carts");
+//const query = db.collection("carts");
 
 class CartDaoFirebase extends FirebaseContainer {
   constructor() {
-    super(query);
+    super("carts");
   }
 
   deleteCartProduct = async (id, prodId) => {

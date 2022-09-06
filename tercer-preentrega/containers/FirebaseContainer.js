@@ -1,8 +1,9 @@
 const parseDoc = require("../utils/parseDoc");
+const db = require("../firebase/db");
 
 class FirebaseContainer {
-  constructor(query) {
-    this.query = query;
+  constructor(collection) {
+    this.collection = db.collection(collection);
   }
 
   getItems = async () => {

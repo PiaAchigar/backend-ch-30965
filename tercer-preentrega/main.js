@@ -14,7 +14,7 @@ const {
 } = require("./middlewares/auth");
 const { engine } = require("express-handlebars");
 const initializePassport = require("./config/passport");
-const connectDB = require("./db/mongodb");
+const connectDB = require("./db/db");
 const dotenv = require("dotenv");
 
 dotenv.config();
