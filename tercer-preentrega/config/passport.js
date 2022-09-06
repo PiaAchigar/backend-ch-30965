@@ -12,7 +12,7 @@ initialize = (passport) => {
 
             async (email, password, done) => {
                 try {
-                    const user = await Users.getByEmail(email);
+                    const user = await Users.findOne({email: email});
                     if (!user)
                         return done(null, false, {
                             message: "Usuario no encontrado",
@@ -36,7 +36,7 @@ initialize = (passport) => {
         "register",
         new LocalStrategy({ usernameField: "email", passReqToCallback: true }, async (req, email, password, done) => {
             try {
-                const user = await Users.getByEmail(email);
+                const user = await Users.findOne({email: email});
                 if (user)
                     return done(null, false, {
                         message: "El nombre de usuario ya esta en uso.",
