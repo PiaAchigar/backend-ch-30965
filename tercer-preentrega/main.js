@@ -7,6 +7,7 @@ const appRouter = require("./routers/appRouter");
 const passport = require("passport");
 const session = require("express-session");
 const flash = require("express-flash");
+const multer = require("multer");
 const {
   isAuthenticated,
   isNotAuthenticated,
@@ -54,14 +55,12 @@ app.engine(
 app.set("views", "./views");
 app.set("view engine", "hbs");
 
-//404
+//app.use(multer());
 
 app.use("/api/productos", productsRouter);
 app.use("/api/carrito", cartRouter);
 app.use("/auth", authRouter);
 app.use("/", appRouter);
-
-
 
 const server = app.listen(PORT, () => {
   console.log(`listening on port: ${PORT}`);

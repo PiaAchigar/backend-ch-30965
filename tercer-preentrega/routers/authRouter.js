@@ -35,6 +35,15 @@ authRouter.post(
     failureFlash: true,
   })
 );
+// authRouter.post(
+//   "/register",
+//   upload.single("photo_url"),
+//   passport.authenticate("register", (req, res) =>{
+//     successRedirect: "/home",
+//     failureRedirect: "/auth/register",
+//     failureFlash: true,
+//   })
+// );
 
 authRouter.get("/logout", isAuthenticated, (req, res, next) => {
   const user = { name: req.user.name };
