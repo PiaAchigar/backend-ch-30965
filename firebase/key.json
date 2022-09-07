@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "hunko-farmacia",
+    "private_key_id": "1720eb42c42877e0df7449932a7c79cea3537a87",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCq0z3DL0oV6dy1\nlzERCNGrG2GxHY37TZcB/jyMiOXeDj/TbZwh6hdGjUwnc9pBB1uhAxLZAN+lvGex\nhU5S/l1wLGiKwgPZ8tzJG39caZfZvSnPR3JvpkpB+ddAeS8S3Pl2IgreaLTqqN8t\n0UIlGZkDUsE8wd6L5ixwFvlNxMerBpIlsl3xHYILMqWg7CT7NwoqWJkPO1bzHV5D\nb7dVdDTdyc4pTf70/1Cu19za/aNxfNqiuycEi2JeXDu6R6NvoSXuWCF5oQiLdhp9\nPYmGLM2WomDEJgV7Yd6szi7xgLDfXlKYlRvyUvLzAGi+u1CK1Jjhl65ieDQknZd3\nX7jOf4bfAgMBAAECggEAQqroesl053J6wZ/89UH02gt4p+/53m7clVmMdehjlbMH\n89LeUVoTtWQlqWwMbL6bYw5ZB7nQjtUlvuFgvQEqpEGgly665A9lXVNO9Fj9e2vY\n6l1e6vYCGxePi0kANyNodFM63KwOl1pKp434e5Qu5F4irjyXRxAQnbpJl7FJn5Pw\nOxeRcqsuEWUmzXYNQ2naU4RLvgwmi9IwX2XtNoUkg7PPU8x0C69Ok0odVyBEnpy1\n+g3z4ePjCqhcbthstW0fna7TBlKd10CLQXmuTCmgtJoA/4aGOx/Bb31jlf4hWPFW\ntGm1dsA5rKAEmARaoYklVBnmP7HUwvf1ZHMKPBmEaQKBgQDhcf6/K/+f9h6lZIDx\nfIEuVNFlcB1fdt/Kb5DM82OzvjIRUFstdur2I0z8vicLbq/ahiZTVl3ieha0mVLr\nCwWyz0zY5m1Bsdbrhlo07STal//Y2TsGYVsTEuuLow0DkfMc+8PYUVkjPpIPhuqw\nNlOmXYIkqaJJzsTHcuraTH5oVQKBgQDB+igt9M2kyBEWGXqT5ZyWsDLIgHsIz6h7\nR5oMLdBgXZM+TDRJ6MgnEqgve0bq0QhjTZiZ1Hl1YHWKQm1sVg5K3fYRPmtvZJAT\nJjN+qDm3GTtP7Asypsh71kV0uIUehf4lHDe/Wvnd/Tgyml0vo9PDWeJJ1rOeuCsF\n13jGnW52YwKBgCVR+qro/LMdSit0/Md9JeFmlxdkvOgNxLQ9TcovzGR36s/k7oMT\nOYgvhdIdJFeHJkNVi8il9nrEXTfeXdSdCX91Q7JwSsviRcLNhedXDo/FM8xRAa1n\ntmzs5+NAxam+onE82EnaBZiJBiLd4cHz7FsRBbdOAZiYSwj9ZBVpLk/VAoGBALee\nKmyeQA/MxsfJpIvdnWXTMq8zV8PWdmEEPWFr+MVPrvMYxaJ09Qpvkb8ojc/3wV3m\n9R4g0Dx466rOCLC1oV/jTmuyT5apdex6i+JIMiINg2S7RzpSQJNhGGxNws1K/3F3\njZnY74/ghFL6Zl2TUgCo1BkbYPpM0YT9G7m/CvKLAoGBAMatziAKQS+HW5sWRAL1\n0Lz3T4xz9/ASErSpJR9r9BdFuS/Csq1ygim6+U2J9ED86WuFKK89zMV8GC+nGTVm\ndzbILdY2Sl6aKAQ9wSVCo6L63bhcK1PkhYtt/EfChaAWUwti9sFP0i/x8tBwAUUM\nb4dj2ZO8KMgZ0ctLBUqlAytt\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-jjku0@hunko-farmacia.iam.gserviceaccount.com",
+    "client_id": "117703953630596279960",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jjku0%40hunko-farmacia.iam.gserviceaccount.com"
+  }
