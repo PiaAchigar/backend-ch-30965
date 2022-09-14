@@ -1,9 +1,11 @@
+//Le mando un UserService cualquiera, el que yo quiera
 class UserController {
   constructor(service) {
     this.service = service;
   }
 
   async get(req, res) {
+    //console.log({ this })
     try {
       const items = await this.service.getAll();
       return res.json(items);

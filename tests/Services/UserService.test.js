@@ -1,5 +1,7 @@
 const UserService = require("../../Services/UserService");
+//en el desarrollo orientado apruebas, se usan mocks
 
+//caso de éxito
 test("return get all", async () => {
   const repositoryMock = {
     getAll: () => {
@@ -21,6 +23,7 @@ test("return get all", async () => {
   expect(items.length).toBe(2);
 });
 
+//caso de error
 test("return get all fails", async () => {
   const repositoryMock = {
     getAll: () => {
