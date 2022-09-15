@@ -1,5 +1,7 @@
+//Capa 1 - 3er parte.
 import { obtenerDatos, crearDato } from './servicio.js'
 
+//éste controlador depende de "obtenerDatos"
 const getDatosController = async (req, res) => {
   try {
     const datos = await obtenerDatos()

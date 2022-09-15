@@ -1,9 +1,12 @@
+//Capa 1
 const express = require("express");
 const mongoose = require("mongoose");
 
 const userRouter = require("./Routers/userRouter");
 
-mongoose.connect("mongodb://localhost:27017/30965-clase38");
+//como me conecto a la bd de mongoAtlas??
+//mongoose.connect("mongodb://localhost:27017/30965-clase38");
+mongoose.connect("mongodb+srv://cluster0.5z86n.mongodb.net/myFirstDatabase");
 
 const app = express();
 

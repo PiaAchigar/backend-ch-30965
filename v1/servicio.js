@@ -1,9 +1,8 @@
+//Capa 2
 import { recuperarDatos, guardar } from './persistencia.js'
 
 const obtenerDatos = async () => {
   const datos = await recuperarDatos()
-  // 
-
   return datos
 }
 

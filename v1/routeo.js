@@ -1,3 +1,4 @@
+//Capa 1 -2da parte.
 import { Router } from "express";
 
 import { getDatosController, postDatosController } from "./controlador.js";

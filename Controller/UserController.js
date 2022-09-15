@@ -1,3 +1,4 @@
+//Capa 1 - 3er parte. El nombre del archivo está en mayusculas por que es una clase lo que tiene adentro
 //Le mando un UserService cualquiera, el que yo quiera
 class UserController {
   constructor(service) {

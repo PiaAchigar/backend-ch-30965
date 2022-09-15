@@ -1,3 +1,4 @@
+//Capa 2 - Aervicio, lógica de Negocio
 class BaseService {
   constructor(repository) {
     this.repository = repository;
