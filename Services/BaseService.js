@@ -1,4 +1,4 @@
-//Capa 2 - Aervicio, lógica de Negocio
+//Capa 2 - Servicio, lógica de Negocio
 class BaseService {
   constructor(repository) {
     this.repository = repository;

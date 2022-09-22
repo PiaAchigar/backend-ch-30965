@@ -1,5 +1,7 @@
 //Capa 1 - 3er parte. El nombre del archivo está en mayusculas por que es una clase lo que tiene adentro
 //Le mando un UserService cualquiera, el que yo quiera
+//Es como el ultimo middleware de una ruta (de express), que es el enrutamiento
+//Es el que al final va a responder una petición
 class UserController {
   constructor(service) {
     this.service = service;

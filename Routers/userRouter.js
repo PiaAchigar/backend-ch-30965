@@ -1,4 +1,5 @@
 //Capa 1 - 2da parte.
+//es donde se definen las rutas
 //Acá llamamos al Servicio y el Repositorio y los inyectamos
 const { Router} = require('express')
 const UserController = require('../Controller/UserController')
