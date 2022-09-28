@@ -11,8 +11,11 @@ class ProductController {
     let datos;
     if (req.params.id) datos = await this.service.getOne(req.params.id);
     else datos = await this.service.getAll();
-    console.log({ datos });
-    return res.send(datos);
+    //console.log({ datos });
+    //return res.send(datos);
+    return datos
+      ? res.status(200).send(datos)
+      : res.status(404).json({ message: "product not found" });
   }
 
   async createProduct(req, res) {
@@ -29,8 +32,10 @@ class ProductController {
 
   async updateProduct(req, res) {
     const prod = await this.service.updateProduct(req.params.id, req.body);
+    //que devuelve ese await?
     return res.sendStatus(204);
   }
+
   async deleteProduct(req, res) {
     const isDeleted = await this.service.deleteProduct(req.params.id, req.body);
     if (isDeleted) return res.sendStatus(204);

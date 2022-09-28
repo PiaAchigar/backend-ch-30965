@@ -21,17 +21,17 @@ const initializePassport = require("./config/passport");
 const compression = require("compression");
 
 const connectDB = require("./config/database");
-const logger = require("./utils/logger");
+const logger = require("./utilities/logger");
 
-const normalizeMessages = require("./utils/normalizeMessages");
+const normalizeMessages = require("./utilities/normalizeMessages");
 
 const yargs = require("yargs");
 const MessageService = require("./Services/MessageService");
 const ProductService = require("./Services/ProductService");
 
-const appRouter = require("./Routes/appRouter");
-const authRouter = require("./Routes/authRouter");
-const productRouter = require("./Routes/productRouter");
+const appRouter = require("./Routers/appRouter");
+const authRouter = require("./Routers/authRouter");
+const productRouter = require("./Routers/productRouter");
 
 const userRouter = require("./Routers/userRouter");
 const cors = require("cors");

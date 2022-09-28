@@ -16,8 +16,9 @@ class BaseDAOMemory {
     async readFile() {
         try {
             const fileSaved = await fs.promises.readFile(this.filePath, "utf-8");
-            if (!fileSaved) return [];
-            else return JSON.parse(fileSaved);
+            return (!fileSaved) ? [] : JSON.parse(fileSaved)
+            //if (!fileSaved) return [];
+            //else return JSON.parse(fileSaved);
         } catch (err) {
             console.log(err);
         }

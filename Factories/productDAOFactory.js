@@ -8,7 +8,7 @@ const storageMapper = {
 };
 
 module.exports = (storage) => {
-    const storageDAOFn = storageMapper[storage] || storageMapper.memory;
+    const storageDAOFn = storageMapper[storage] || storageMapper.MEMORY;
     const dao = storageDAOFn();
     return dao;
 };
