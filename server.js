@@ -117,18 +117,18 @@ const server = () => {
     console.log(`nuevo usuario id: ${socket.id}`);
     const messages = await messageService.getAll();
 
-    socket.emit("success", normalizeMessages(messages));
+    //socket.emit("success", normalizeMessages(messages));
     socket.on("addProduct", async (data) => {
       const newProduct = await productService.createProduct(data);
       io.emit("newProduct", newProduct);
     });
 
     //chat
-    // socket.on("login", async (user) => {
-    //     const messages = await messageService.getAll();
-    //     normalizeMessages(messages);
-    //     socket.emit("success", normalizeMessages(messages));
-    //});
+    socket.on("login", async (user) => {
+        const messages = await messageService.getAll();
+        normalizeMessages(messages);
+        socket.emit("success", normalizeMessages(messages));
+    });
 
     // socket.on("addMessage", async (data) => {
     //     const newMessage = await messageService.createMessage(data);

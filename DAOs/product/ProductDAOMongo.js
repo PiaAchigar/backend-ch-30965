@@ -1,4 +1,4 @@
-const { ProductSchema } = require("../../Models/productModel");
+const ProductSchema = require("../../Models/productModel");
 //const productModel = require("../../Models/productModel");
 
 class ProductDAOMongo {
