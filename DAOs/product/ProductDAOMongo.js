@@ -1,9 +1,9 @@
-const { ProductModel } = require("../../Models/productModel");
+const { ProductSchema } = require("../../Models/productModel");
 //const productModel = require("../../Models/productModel");
 
 class ProductDAOMongo {
   constructor() {
-    this.model = ProductModel;
+    this.model = ProductSchema;
   }
   async saveProduct(product) {
     const newProduct = new this.model(product);
@@ -22,7 +22,7 @@ class ProductDAOMongo {
 
   async create(product) {
     const newProduct = new this.model(product);
-    console.log(newProduct);
+    console.log({ newProduct });
     return await newProduct.save();
   }
 
