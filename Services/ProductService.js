@@ -9,8 +9,8 @@ class ProductService {
     const data = await this.repository.getAll();
     return data;
   }
-  async createProduct(data) {
-    return await this.repository.saveProduct(data);
+  async createProduct(value) {
+    return await this.repository.saveProduct(value);
   }
   async getOne(id) {
     const prod = await this.repository.getOne(id);
