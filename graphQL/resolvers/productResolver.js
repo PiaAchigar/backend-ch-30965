@@ -21,6 +21,7 @@ class ProductResolver {
 
   createProduct = async ({ values }) => {
     const data = await this.service.createProduct(values);
+    //const id = crypto.randomByTes(10).toString('hex') //genera un string aleatorio
     return data;
   };
 

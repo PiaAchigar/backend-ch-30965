@@ -28,10 +28,11 @@ const normalizeMessages = require("./utilities/normalizeMessages");
 const yargs = require("yargs");
 const MessageService = require("./Services/MessageService");
 const ProductService = require("./Services/ProductService");
-
+//const randomRouter = require("./Routers/randomRouter")
 const appRouter = require("./Routers/appRouter");
 const authRouter = require("./Routers/authRouter");
 const productRouter = require("./Routers/productRouter");
+const graphQL = require("./graphQL/graphQL");
 
 const userRouter = require("./Routers/userRouter");
 const cors = require("cors");
@@ -50,8 +51,6 @@ app.use(cors()); //cors a nivel de aplicación
 }
 app.use(cors(corsOptions))
 */
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const server = () => {
   const app = express();
@@ -64,6 +63,7 @@ const server = () => {
   const productService = new ProductService();
   const messageService = new MessageService();
 
+  app.use("/graphql", graphQL());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(
@@ -86,7 +86,7 @@ const server = () => {
   app.use("/auth", authRouter);
   app.use("/products", productRouter);
   app.use("/", appRouter);
-  app.use("/api/users", userRouter);
+  //app.use("/api/users", userRouter);
 
   app.use((req, res, next) => {
     logger.info(`Ruta: ${req.path} Metodo: ${req.method}`);

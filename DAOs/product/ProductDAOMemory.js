@@ -50,6 +50,7 @@ class ProductDAOMemory extends BaseDAOMemory {
 
   async delete(id) {
     let products = await this.readFile();
+    //tambien se podria hacer un findIndex y luego un products.splice(index,1)
     const newArr = products.filter((prod) => prod.id !== parseInt(id));
     await this.saveFile(newArr);
     return products.length === newArr.length ? false : true;

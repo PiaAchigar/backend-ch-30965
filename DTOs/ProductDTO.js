@@ -8,3 +8,5 @@ class ProductDTO {
 }
 
 module.exports = ProductDTO;
+
+//Lo llaman desde ProductRepository.js
