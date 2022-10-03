@@ -10,3 +10,4 @@ class ProductDTO {
 module.exports = ProductDTO;
 
 //Lo llaman desde ProductRepository.js
+//ésto DTOs son clases con las que mapeamos productos o Usuarios

@@ -51,3 +51,5 @@ module.exports = () => {
     graphiql: true,
   });
 };
+// rootValue son los resolvers -> query o mutacion a mapear : el resolver
+//graphiql: true ->

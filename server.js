@@ -32,7 +32,7 @@ const ProductService = require("./Services/ProductService");
 const appRouter = require("./Routers/appRouter");
 const authRouter = require("./Routers/authRouter");
 const productRouter = require("./Routers/productRouter");
-const graphQL = require("./graphQL/graphQL");
+
 
 const userRouter = require("./Routers/userRouter");
 const cors = require("cors");
@@ -51,7 +51,7 @@ app.use(cors()); //cors a nivel de aplicación
 }
 app.use(cors(corsOptions))
 */
-
+const graphQL = require("./graphQL/graphQL");
 const server = () => {
   const app = express();
   const httpServer = new HttpServer(app);
