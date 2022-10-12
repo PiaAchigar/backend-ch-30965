@@ -2,9 +2,10 @@ const { Schema, model } = require("mongoose");
 //Acá tengo que llamar a crypto para generar el nuevo id??
 const ProductSchema = new Schema(
   {
-    name: { type: String },
-    photo_url: { type: String },
+    title: { type: String },
     price: { type: Number },
+    thumbnail: { type: String },
+    
   },
   { timestamps: true }
 );

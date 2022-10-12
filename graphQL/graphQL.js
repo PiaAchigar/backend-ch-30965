@@ -40,7 +40,7 @@ const productResolver = new ProductResolver();
 
 module.exports = () => {
   return graphqlHTTP({
-    Schema,
+    schema: Schema,
     rootValue: {
       getProduct: productResolver.getProduct,
       getProducts: productResolver.getProducts,
@@ -52,4 +52,6 @@ module.exports = () => {
   });
 };
 // rootValue son los resolvers -> query o mutacion a mapear : el resolver
-//graphiql: true ->
+//graphiql: true -> nos levanta un cliente que se llama graphiql, es un cliente de graphql
+// y a su vez es la docu de nuestro servidor graphql
+//lo veo cuando hago una peticion GET desde el navegador
