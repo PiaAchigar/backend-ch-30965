@@ -8,6 +8,7 @@ const {
   isAdmin,
 } = require("../middlewares/auth");
 
+//esta funcion que responde sería mi controller - clase 40
 productsRouter.get("/:id?", async (req, res) => {
   if (req.params.id) {
     return res.json(await products.getItemById(req.params.id));

@@ -1,5 +1,6 @@
 const MongoContainer = require("../../containers/MongoContainer");
 const Cart = require("../../models/Cart");
+const logger = require("../../config/winston");
 
 class CartDaoMongoDB extends MongoContainer {
   constructor() {

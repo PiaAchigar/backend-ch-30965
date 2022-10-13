@@ -1,1 +1,24 @@
 {"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}
+{"_message":"Cart validation failed","errors":{"products.0.photo_url":{"kind":"required","message":"Path `photo_url` is required.","name":"ValidatorError","path":"photo_url","properties":{"message":"Path `photo_url` is required.","path":"photo_url","type":"required"}}},"level":"error","message":"Cart validation failed: products.0.photo_url: Path `photo_url` is required.","name":"ValidationError"}

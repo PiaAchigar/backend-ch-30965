@@ -19,9 +19,10 @@ class MongoContainer {
   getItemById = async (id) => {
     let item = {};
     try {
-      item = this.model.findById(id);
+      item = await this.model.findById(id);
     } catch (err) {
-      logger.error(err);
+      console.log(err);
+      //logger.error(err);
     }
     return item;
   };

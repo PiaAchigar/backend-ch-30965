@@ -1,12 +1,13 @@
 const MongoContainer = require("../../containers/MongoContainer");
 const { Product } = require("../../models/Product");
-const { User } = require("../../models/User");
+const User = require("../../models/User");
+//no debo desestructurarlo
 
 class UserDaoMongoDB extends MongoContainer {
   constructor() {
     super(User);
   }
-
+  
   getByEmail = async (email) => {
     console.log("entro");
     try {
@@ -27,6 +28,7 @@ class UserDaoMongoDB extends MongoContainer {
         { _id: userId },
         { cart_id: cartId }
       );
+      //console.log(user)
       return cartId;
     } catch (err) {
       console.log(err);
