@@ -25,7 +25,7 @@ const logger = require("./utilities/logger");
 
 const normalizeMessages = require("./utilities/normalizeMessages");
 
-const yargs = require("yargs");
+//const yargs = require("yargs");
 const MessageService = require("./Services/MessageService");
 const ProductService = require("./Services/ProductService");
 //const randomRouter = require("./Routers/randomRouter")
@@ -34,7 +34,7 @@ const authRouter = require("./Routers/authRouter");
 const productRouter = require("./Routers/productRouter");
 
 
-const userRouter = require("./Routers/userRouter");
+//const userRouter = require("./Routers/userRouter");
 const cors = require("cors");
 
 const app = express();
@@ -104,7 +104,7 @@ const server = () => {
       partialsDir: `${__dirname}/views/partials`,
     })
   );
-
+// __dirname devuelve la ruta del directorio
   app.set("views", "./views");
   app.set("view engine", "hbs");
 

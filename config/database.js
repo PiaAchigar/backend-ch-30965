@@ -10,3 +10,5 @@ const connectDB = async (URL) => {
 };
 
 module.exports = connectDB;
+
+//Ver video de Leifer Mendez - Crea una rest api escalable y sostenible con ty y express - min 32 conexion a Mongo

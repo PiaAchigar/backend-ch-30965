@@ -4,8 +4,8 @@
 //class ProductRepository extends BaseRepository {
 //findByPrice(price) {}
 
-const fs = require("fs");
-const ProductDAOMemory = require("../DAOs/product/ProductDAOMemory");
+//const fs = require("fs");
+//const ProductDAOMemory = require("../DAOs/product/ProductDAOMemory");
 const ProductDTO = require("../DTOs/ProductDTO");
 const productDAOFactory = require("../Factories/productDAOFactory");
 //acá esta por default memory, no se si esta bien.

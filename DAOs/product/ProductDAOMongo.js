@@ -1,3 +1,4 @@
+//lo llaman desde productDAOFactory
 const ProductSchema = require("../../Models/productModel");
 //const productModel = require("../../Models/productModel");
 
