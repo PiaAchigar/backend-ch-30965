@@ -9,9 +9,9 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node server.js",
-    "dev": "NODE_ENV=DEV nodemon server.js",
-    "prod": "NODE_ENV=PROD nodemon server.js"
+    "start": "nodemon main.js",
+    "dev": "NODE_ENV=DEV nodemon main.js",
+    "prod": "NODE_ENV=PROD nodemon main.js"
   },
   "author": "",
   "license": "ISC",
