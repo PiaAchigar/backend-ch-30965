@@ -50,7 +50,7 @@ app.use(cors()); //cors a nivel de aplicación
 }
 app.use(cors(corsOptions))
 */
-const graphQL = require("./graphQL/graphQL");
+//const graphQL = require("./graphQL/graphQL");
 const server = () => {
   const app = express();
   const httpServer = new HttpServer(app);
@@ -62,7 +62,7 @@ const server = () => {
   const productService = new ProductService();
   const messageService = new MessageService();
 
-  app.use("/graphql", graphQL());
+  //app.use("/graphql", graphQL());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(
