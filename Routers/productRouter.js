@@ -8,14 +8,14 @@ const productService = new ProductService();
 const productController = new ProductController(productService);
 
 const productRouter = new Router();
-
+//El GET /products funciona bien
 productRouter.get("/:id?", productController.get.bind(productController));
 
 productRouter.get(
   "/productos-test",
   productController.createRandom.bind(productController)
 );
-
+// POST a /products
 productRouter.post(
   "/",
   productController.createProduct.bind(productController)

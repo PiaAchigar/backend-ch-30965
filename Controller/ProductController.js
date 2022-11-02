@@ -37,6 +37,7 @@ class ProductController {
   }
 
   async deleteProduct(req, res) {
+    //console.log({ req.params.id })
     const isDeleted = await this.service.deleteProduct(req.params.id, req.body);
     if (isDeleted) return res.sendStatus(204);
     else return res.status(404).json({ error: "there was an error" });

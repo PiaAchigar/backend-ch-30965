@@ -1,5 +1,7 @@
 const socket = io();
 const schema = normalizr.schema;
+//----------Bienvenida ------------
+//document.getElementById("bienvenida").innerHTML = `Hola ${io}`
 
 //----------------products----------------
 
@@ -152,7 +154,7 @@ const template = Handlebars.compile(`
             <th scope="row">{{this.id}}</th>
             <td>{{this.title}}</td>
             <td>$ {{this.price}}</td>
-            <td><img src="{{this.thumbnail}}" /></td>
+            <td><img src="{{this.thumbnail}}"></td>
         </tr>
     {{/each}}
 `);

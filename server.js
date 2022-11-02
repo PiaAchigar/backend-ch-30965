@@ -33,7 +33,6 @@ const appRouter = require("./Routers/appRouter");
 const authRouter = require("./Routers/authRouter");
 const productRouter = require("./Routers/productRouter");
 
-
 //const userRouter = require("./Routers/userRouter");
 const cors = require("cors");
 
@@ -104,7 +103,7 @@ const server = () => {
       partialsDir: `${__dirname}/views/partials`,
     })
   );
-// __dirname devuelve la ruta del directorio
+  // __dirname devuelve la ruta del directorio
   app.set("views", "./views");
   app.set("view engine", "hbs");
 
@@ -125,9 +124,9 @@ const server = () => {
 
     //chat
     socket.on("login", async (user) => {
-        const messages = await messageService.getAll();
-        normalizeMessages(messages);
-        socket.emit("success", normalizeMessages(messages));
+      const messages = await messageService.getAll();
+      normalizeMessages(messages);
+      socket.emit("success", normalizeMessages(messages));
     });
 
     // socket.on("addMessage", async (data) => {
